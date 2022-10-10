@@ -1,9 +1,6 @@
 import MeCab
-
-tagger1 = MeCab.Tagger()
-dicdir = '-d /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-unidic-neologd'
-tagger2 = MeCab.Tagger(dicdir)
-
-sample_txt = '鬼滅の刃もいいけれど、約束のネバーランドもね'
-print(tagger1.parse(sample_txt))
-print(tagger2.parse(sample_txt))
+import unidic
+#やっと辞書を入れれた
+tagger = MeCab.Tagger('-Owakati -d "C:/Program Files/MeCab/dic/ipadic" -u "C:/Program Files (x86)/MeCab/mecabfolder/userdic/mecab-user-dict-seed.dic"')
+result = tagger.parse('私が最近見た映画は、約束のネバーランドでした。')
+print(result)
