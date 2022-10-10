@@ -7,7 +7,7 @@ nlp: spacy.Language = spacy.load('ja_ginza')
 
 
 # text を Doc クラスに変換する
-text: str = '錦織圭選手はテニスが大好きです。'
+text: str = '山田孝之は偉大な俳優なので演技をしてテレビに出演します。'
 doc: spacy.tokens.doc.Doc = nlp(text)
 
 # Doc クラスは Token クラスのイテレーターになっている
