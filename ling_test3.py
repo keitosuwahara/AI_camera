@@ -1,6 +1,9 @@
 import MeCab
-import unidic
-#やっと辞書を入れれた
-tagger = MeCab.Tagger('-Owakati -d "C:/Program Files/MeCab/dic/ipadic" -u "C:/Program Files (x86)/MeCab/mecabfolder/userdic/mecab-user-dict-seed.dic"')
-result = tagger.parse('私が最近見た映画は、約束のネバーランドでした、あと鬼滅の刃、呪術廻戦')
-print(result)
+
+
+#-dと-uのパスは家と学校とは同じにする
+tagger = MeCab.Tagger('-d "C:/Program Files (x86)/MeCab/dic/ipadic" -u "C:/Program Files (x86)/MeCab/mecabfolder/userdic/NEologd.dic"')
+#result = tagger.parse("私が一番好きな漫画は、進撃の巨人とGANTZです。")
+result2=tagger.parse("横浜システム工学院専門学校へ入学するには")
+print(result2)
+#
