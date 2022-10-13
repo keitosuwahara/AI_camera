@@ -1,13 +1,13 @@
-"https://qiita.com/sugiyama404/items/7691d7ff6a5b8c24eddf"
-import json
+import MeCab
+#-dと-uのパスは家と学校とは同じにする
+tagger = MeCab.Tagger('-d "C:/Program Files (x86)/MeCab/dic/ipadic" -u "C:/Program Files (x86)/MeCab/mecabfolder/userdic/NEologd.dic"')
+tagger2= MeCab.Tagger('-Owakati -d "C:/Program Files (x86)/MeCab/dic/ipadic" -u "C:/Program Files (x86)/MeCab/mecabfolder/userdic/NEologd.dic"')
+#result = tagger.parse("私が一番好きな漫画は、進撃の巨人とGANTZです。")
 
+text="ああ友よビートたけしは美しいからメンチカツを食べると思うかい？"
 
-
-j_file_path="./static/json/info.json"
-j_file=open(j_file_path,"r")
-info=json.load(j_file)
-
-CHANNEL_ACCESS_TOKEN=info["someone"]
-print(CHANNEL_ACCESS_TOKEN["CHANNEL_ACCESS_TOKEN"])
-
-
+result = tagger.parse(text)
+result2 = tagger2.parse(text)
+print(result)
+print(result2)
+#

@@ -10,4 +10,4 @@ fill_mask = pipeline('fill-mask', model=model, tokenizer=tokenizer, config=confi
 #print(fill_mask('校庭に[MASK]が入ってきて、皆大騒ぎだ。'))
 #print(fill_mask('将来は、[MASK]になるのが夢だ。'))
 #print(fill_mask('太郎は、[MASK]部のエースだ。'))
-print(fill_mask('山の上に、[MASK]があるように見える。'))
+print(fill_mask('明日には明日の[MASK]が吹く'))
