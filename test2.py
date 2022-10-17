@@ -1,11 +1,11 @@
 import MeCab
 
 dic_path='-d "C:/Program Files (x86)/MeCab/dic/ipadic" -u "C:/Program Files (x86)/MeCab/mecabfolder/userdic/NEologd.dic"'
-inwakati_dic='-Owakati -d "C:/Program Files (x86)/MeCab/dic/ipadic" -u "C:/Program Files (x86)/MeCab/mecabfolder/userdic/NEologd.dic"'
+wakati_in_dic='-Owakati -d "C:/Program Files (x86)/MeCab/dic/ipadic" -u "C:/Program Files (x86)/MeCab/mecabfolder/userdic/NEologd.dic"'
 text = ''
 text2="Pythonやpythonやjava,Java,C,C++"
 mecab = MeCab.Tagger(dic_path)
-mecab2 = MeCab.Tagger(inwakati_dic)
+mecab2 = MeCab.Tagger(wakati_in_dic)
 nodes = mecab.parseToNode(text2)
 
 #大文字を小文字に変換する
