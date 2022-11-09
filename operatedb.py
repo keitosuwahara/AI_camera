@@ -1,46 +1,44 @@
-from distutils.log import info
 import sqlite3
+from flask import Flask,render_template,request
+#作成した出欠席表をwebに表示とDBの更新をするプログラムです
 
 
-def operatedb():
-    # DBを作成する（既に作成されていたらこのDBに接続する
-    dbname ="./database/students.db"
+# DBを作成する（既に作成されていたらこのDBに接続する
+dbname ="./database/students.db"
+conn = sqlite3.connect(dbname)
+#SQLiteを操作するためのカーソル,コントローラー
+cur = conn.cursor()
+#update用のSQL
+update_sql = 'UPDATE students SET name="志村耀介" WHERE studentID=454545'
+# データ更新
+cur.execute(update_sql)
+cur.execute('UPDATE students SET studentID= 186758 WHERE name="志村耀介"')
+cur.execute('UPDATE students SET attendance=1 WHERE name="志村耀介"')
 
-    conn = sqlite3.connect(dbname)
-    #SQLiteを操作するためのカーソル,コントローラー
-    cur = conn.cursor()
-
-
-
-    #update用のSQL
-    update_sql = 'UPDATE students SET name="志村耀介" WHERE studentID=454545'
-
-    # データ更新
-    cur.execute(update_sql)
-    cur.execute('UPDATE students SET studentID= 186758 WHERE name="志村耀介"')
-    cur.execute('UPDATE students SET attendance=1 WHERE name="志村耀介"')
-
-
-    #データベース内の表示データベース内の表示
-    global info
-    info = []
-    records = cur.execute("SELECT * FROM students")
-    print("学籍番号  名前  出欠席")
-    for record in records:
-        print(list(record))
-        info.append(list(record))
-
-    # コミットしないと登録が反映されない
-    conn.commit()
-print(info)
-    
+#データベース内の表示
+info = []
+records = cur.execute("SELECT * FROM students")
+for record in records:
+    info.append(list(record))
+#print(info)
+# コミットしないと登録が反映されない
+conn.commit()
 
 
+app = Flask(__name__)
 
+#トップページ
+@app.route("/", methods=["GET","POST"])
+def top():
+    username=info
+    return render_template("/displaydb.html",users=username)
 
 
 if __name__ == "__main__":
-    operatedb()
+    app.run(debug=True)
+
+
+
 
 
 
