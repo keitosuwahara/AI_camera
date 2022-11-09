@@ -1,4 +1,7 @@
 import cv2
+
+face_cascade_path = "./models/face_recognize/haarcascade_frontalface_default.xml.xml"
+face_cascade = cv2.CascadeClassifier(face_cascade_path)#識別子読み込み
 def camera():
     camera = cv2.VideoCapture(0)
     while True:
