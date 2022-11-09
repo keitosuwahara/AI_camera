@@ -1,14 +1,16 @@
-import sqlite3
+inserts = [
+        (435755,"高田悠",1),
+        (557855,"黒野怜奈",1),
+        (846556,"トゴーフーバダムツェレン",1),
+        (454545,"志村",1),
+        (210103,"諏訪原慶斗",1),
+        (190721,"岩橋大地",1),
+        (200284,"桃崎奏斗",1)
+        ]
 
-dbname = "./database/students.db"
-    # DBを作成する（既に作成されていたらこのDBに接続する
-conn = sqlite3.connect(dbname)
-    #SQLiteを操作するためのカーソル,コントローラー
-cur = conn.cursor()
-
-    #テーブルの作成
-print(cur.execute("SELECT COUNT * FROM sqlite_master WHERE TYPE='table' AND name='students'"))                             
-
+for insert in inserts:
+    print(list(insert)[1])
+        
 
 
 # info = "INSERT INTO Students values("
