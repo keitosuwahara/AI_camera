@@ -8,11 +8,23 @@ inserts = [
         (200284,"桃崎奏斗",1)
         ]
 
+#5文字以上の数字のみ抜き出す
 for insert in inserts:
-    print(list(insert)[1])
-        
+    for student in list(insert):
+        if str(student).isdigit() == True and len(str(student)) > 5:
+            print(student)
+            
+#日本語とカタカナ、アルファベットの文字列を抜き出す
+for insert in inserts:
+    for student in list(insert):
+        if str(student).isalpha():
+                print(student)
 
-
+#2文字以下の数字のみ抜き出す
+for insert in inserts:
+    for student in list(insert):
+        if str(student).isdigit() == True and len(str(student)) < 2:
+            print(student)
 # info = "INSERT INTO Students values("
     # for i in range(len(inserts[0])):
     #     info += "?,"

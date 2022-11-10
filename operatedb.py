@@ -9,11 +9,11 @@ conn = sqlite3.connect(dbname)
 #SQLiteを操作するためのカーソル,コントローラー
 cur = conn.cursor()
 #update用のSQL
-update_sql = 'UPDATE students SET name="志村耀介" WHERE studentID=454545'
+update_sql = 'UPDATE students SET name="志村燿平" WHERE studentID=186758'
 # データ更新
 cur.execute(update_sql)
-cur.execute('UPDATE students SET studentID= 186758 WHERE name="志村耀介"')
-cur.execute('UPDATE students SET attendance=1 WHERE name="志村耀介"')
+cur.execute('UPDATE students SET studentID= 186758 WHERE name="志村燿平"')
+cur.execute('UPDATE students SET attendance=1 WHERE name="志村燿平"')
 
 #データベース内の表示
 info = []
