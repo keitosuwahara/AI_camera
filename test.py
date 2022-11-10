@@ -12,8 +12,11 @@ inserts = [
 for insert in inserts:
     for student in list(insert):
         if str(student).isdigit() == True and len(str(student)) > 5:
-            print(student)
-            
+            studentlist=[]
+            studentlist.append(student)
+            print(studentlist)
+
+"""
 #日本語とカタカナ、アルファベットの文字列を抜き出す
 for insert in inserts:
     for student in list(insert):
@@ -31,3 +34,6 @@ for insert in inserts:
     # info += ")"
 
     # print(info)    
+
+
+"""

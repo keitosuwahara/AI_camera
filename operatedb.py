@@ -30,8 +30,11 @@ app = Flask(__name__)
 #トップページ
 @app.route("/", methods=["GET","POST"])
 def top():
-    username=info
-    return render_template("/displaydb.html",users=username)
+    for users in info:
+        for id in list(users):
+            if str(id).isdigit() == True and len(str(id)) > 5:
+                print(id)
+    return render_template("/displaydb.html",id=id)
 
 
 if __name__ == "__main__":
