@@ -1,5 +1,6 @@
 import sqlite3
-from flask import Flask,render_template,request
+from flask import Flask, render_template, request
+
 #作成した出欠席表をwebに表示とDBの更新をするプログラムです
 
 
