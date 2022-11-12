@@ -24,18 +24,21 @@ for record in records:
 #print(info)
 # コミットしないと登録が反映されない
 conn.commit()
-
+#print(info)#[[186758, '志村燿平', 1], [190721, '岩橋大地', 1], [200284, '桃崎奏斗', 1], [210103, '諏訪原慶斗', 1], [435755, '高田悠', 0], [557855, '黒野怜奈', 1], [846556, 'トゴーフーバダムツェレン', 1]]
 
 app = Flask(__name__)
 
+studentnumlist=[]
 #トップページ
 @app.route("/", methods=["GET","POST"])
 def top():
+#5文字以上の数字のみ抜き出すつまり学籍番号
     for users in info:
-        for id in list(users):
-            if str(id).isdigit() == True and len(str(id)) > 5:
-                print(id)
-    return render_template("/displaydb.html",id=id)
+        for student in list(users):
+            if str(student).isdigit() == True and len(str(student)) > 5:
+                studentnumlist.append(student)
+    return render_template("/displaydb.html",studentnumlist=studentnumlist)
+    
 
 
 if __name__ == "__main__":

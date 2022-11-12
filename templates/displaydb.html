@@ -9,10 +9,11 @@
 
 <body>
     <h1>出席表</h1>
-
+    <p>学籍番号</p>
     <ul>
-        
+        {% for id in studentnumlist %}
         <li>{{ id }}</li>
+        {% endfor %}
         
     </ul>
 
@@ -22,15 +23,31 @@
         </tr>
         
         <tr>
-          <td>4545</td> <td>やまだ</td> <td>1</td>
+          <td>897492</td> <td>東京</td> <td>1</td>
         </tr>
         
         <tr>
-          <td>4545</td> <td>やまだ</td> <td>1</td>
+          <td>898748</td> <td>香川</td> <td>1</td>
         </tr>
     
         <tr>
-          <td>4545</td> <td>やまだ</td> <td>1</td>
+          <td>028829</td> <td>北海道</td> <td>1</td>
+        </tr>
+
+        <tr>
+          <td>343323</td> <td>神奈川</td> <td>1</td>
+        </tr>
+
+        <tr>
+          <td>974927</td> <td>沖縄</td> <td>1</td>
+        </tr>
+
+        <tr>
+          <td>984399</td> <td>鳥取</td> <td>1</td>
+        </tr>
+
+        <tr>
+          <td>985949</td> <td>宮崎</td> <td>1</td>
         </tr>
     </table>
 
