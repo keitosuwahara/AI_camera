@@ -5,19 +5,34 @@
     <meta charset="UTF-8">
     <title>出席表</title>
     <link rel="stylesheet" type="text/css" href="../static/css/displaydb.css">
+    <script src="../static/js/displaydb.js"></script>
 </head>
 
 <body>
     <h1>出席表</h1>
-    <p>学籍番号</p>
-    <ul>
-        {% for id in studentnumlist %}
-        <li>{{ id }}</li>
-        {% endfor %}
-        
-    </ul>
+        <p>学籍番号</p>
+        <ul>
+            {% for id in studentnumlist %}
+            <li>{{ id }}</li>
+            {% endfor %}
+            
+        </ul>
 
-    <table border="5">
+        <p>名前</p>
+        <ul>
+            {% for name in namelist %}
+            <li>{{name}}</li>
+            {% endfor %}
+        </ul>
+
+        <p>出欠席</p>
+        <ul>
+            {% for attendance in attendancelist %}
+            <li>{{attendance}}</li>
+            {% endfor %}
+        </ul>
+
+    <table border="5" id="targetTable">
         <tr>
           <th>学籍番号</th> <th>名前</th> <th>出欠席</th>
         </tr>

@@ -27,8 +27,9 @@ conn.commit()
 #print(info)#[[186758, '志村燿平', 1], [190721, '岩橋大地', 1], [200284, '桃崎奏斗', 1], [210103, '諏訪原慶斗', 1], [435755, '高田悠', 0], [557855, '黒野怜奈', 1], [846556, 'トゴーフーバダムツェレン', 1]]
 
 app = Flask(__name__)
-
 studentnumlist=[]
+namelist=[]
+attendancelist=[]
 #トップページ
 @app.route("/", methods=["GET","POST"])
 def top():
@@ -37,8 +38,19 @@ def top():
         for student in list(users):
             if str(student).isdigit() == True and len(str(student)) > 5:
                 studentnumlist.append(student)
-    return render_template("/displaydb.html",studentnumlist=studentnumlist)
-    
+#日本語とカタカナ、アルファベットの文字列を抜き出す、つまり名前
+    for users in info:
+        for student in list(users):
+            if str(student).isalpha():
+                namelist.append(student)
+#2文字以下の数字のみ抜き出す、つまり出欠席
+    for users in info:
+        for student in list(users):
+            if str(student).isdigit() == True and len(str(student)) < 2:
+                attendancelist.append(student)
+    print(namelist)
+    return render_template("/displaydb.html", studentnumlist = studentnumlist, namelist = namelist, attendancelist = attendancelist)
+
 
 
 if __name__ == "__main__":
