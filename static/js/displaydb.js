@@ -1,7 +1,7 @@
 let table = document.getElementById('targetTable');//htmlの表に接続
 let newRow = table.insertRow();
 let newCell = newRow.insertCell();
-let newText = document.createTextNode('山田');
+let newText = document.createTextNode(' ');
 newCell.appendChild(newText);
 
 newCell = newRow.insertCell();
