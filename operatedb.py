@@ -25,12 +25,11 @@ for record in records:
 # コミットしないと登録が反映されない
 conn.commit()
 #print(info)#[[186758, '志村燿平', 1], [190721, '岩橋大地', 1], [200284, '桃崎奏斗', 1], [210103, '諏訪原慶斗', 1], [435755, '高田悠', 0], [557855, '黒野怜奈', 1], [846556, 'トゴーフーバダムツェレン', 1]]
+#print(len(info))#データベースの人数分
 
-#dbの内容をdb.txtに転記する処理
+#dbの人数をdb.txtに転記する処理
 with open("./database/db.txt","w",encoding="utf-8")as datafile:
-    for users in info:
-        for student in list(users):
-            datafile.write(str(student))
+    datafile.write(str(len(info)))
 
 
 
