@@ -1,3 +1,10 @@
+let fs = new ActiveXObject("Scripting.FileSystemObject");
+let file = fs.OpenTextFile("../../database/db.txt");
+/* 1行目のみ読み込む */
+text[0] = file.ReadLine();
+console.log(text[0])
+
+
 let table = document.getElementById("targetTable");//htmlの表に接続
 let newRow = table.insertRow();
 let newCell = newRow.insertCell();
