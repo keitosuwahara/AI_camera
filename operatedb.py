@@ -26,6 +26,14 @@ for record in records:
 conn.commit()
 #print(info)#[[186758, '志村燿平', 1], [190721, '岩橋大地', 1], [200284, '桃崎奏斗', 1], [210103, '諏訪原慶斗', 1], [435755, '高田悠', 0], [557855, '黒野怜奈', 1], [846556, 'トゴーフーバダムツェレン', 1]]
 
+with open("./database/db.txt","w",encoding="utf-8")as datafile:
+    for users in info:
+        for student in list(users):
+            datafile.write(str(student))
+
+
+
+
 app = Flask(__name__)
 studentnumlist=[]
 namelist=[]
