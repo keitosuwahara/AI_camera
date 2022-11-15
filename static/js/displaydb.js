@@ -1,5 +1,5 @@
 let fs = new ActiveXObject("Scripting.FileSystemObject");
-let file = fs.OpenTextFile("../../database/db.txt");
+let file = fs.OpenTextFile("../../database/NumOfPeapledb.txt");
 /* 1行目のみ読み込む */
 text[0] = file.ReadLine();
 console.log(text[0])
