@@ -59,7 +59,7 @@ def top():
     print(namelist)
     return render_template("/displaydb.html", studentnumlist = studentnumlist, namelist = namelist, attendancelist = attendancelist)
 
-
+#こんなことしなくてもenumerate()つかえばできたね..
 
 if __name__ == "__main__":
     app.run(debug=True)

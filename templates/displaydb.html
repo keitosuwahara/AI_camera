@@ -11,58 +11,79 @@
 <body>
     <h1>出席表</h1>
         <p>学籍番号</p>
-        <ul>
             {% for id in studentnumlist %}
-            <li>{{ id }}</li>
+                {% if loop.index0 == 0 %}
+                    {{ id }}
+                {% endif %}
             {% endfor %}
-            
-        </ul>
 
         <p>名前</p>
-        <ul>
             {% for name in namelist %}
-            <li>{{name}}</li>
+                {% if loop.index0 == 0 %}
+                    {{name}}
+                {% endif %}
             {% endfor %}
-        </ul>
 
         <p>出欠席</p>
-        <ul>
             {% for attendance in attendancelist %}
-            <li>{{attendance}}</li>
+                {% if loop.index0 == 0 %}
+                    {{attendance}}
+                {% endif %}
             {% endfor %}
-        </ul>
 
     <table border="5" id="targetTable">
         <tr>
           <th>学籍番号</th> <th>名前</th> <th>出欠席</th>
         </tr>
         
-        <tr>
-          <td>897492</td> <td>東京</td> <td>1</td>
+
+        <tr>                 
+          <td>{{id}}</td>                        <td>{{name}}</td>                  <td>{{attendance}}</td>
         </tr>
-        
+
+
+
+
         <tr>
           <td>898748</td> <td>香川</td> <td>1</td>
         </tr>
+
+
+
     
         <tr>
           <td>028829</td> <td>北海道</td> <td>1</td>
         </tr>
 
+
+
+
         <tr>
           <td>343323</td> <td>神奈川</td> <td>1</td>
         </tr>
+
+
+
 
         <tr>
           <td>974927</td> <td>沖縄</td> <td>1</td>
         </tr>
 
+
+
+
         <tr>
           <td>984399</td> <td>鳥取</td> <td>1</td>
         </tr>
 
+
+
+
         <tr>
           <td>985949</td> <td>宮崎</td> <td>1</td>
         </tr>
+
+
+
     </table>
 </body>
