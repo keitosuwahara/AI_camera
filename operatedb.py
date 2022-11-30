@@ -56,7 +56,6 @@ def top():
         for student in list(users):
             if str(student).isdigit() == True and len(str(student)) < 2:
                 attendancelist.append(student)
-    print(namelist)
     return render_template("/displaydb.html", studentnumlist = studentnumlist, namelist = namelist, attendancelist = attendancelist)
 
 #こんなことしなくてもenumerate()つかえばできたね..
