@@ -1,8 +1,12 @@
 import sqlite3
+from createdb import studentdb , admindb
+import datetime
 from flask import Flask, render_template, request
 
 #作成した出欠席表をwebに表示とDBの更新をするプログラムです
 
+studentdb()#学生データベースを作る
+admindb()#管理者用データベースを作る
 
 # DBを作成する（既に作成されていたらこのDBに接続する
 dbname ="./database/students.db"
@@ -10,11 +14,11 @@ conn = sqlite3.connect(dbname)
 #SQLiteを操作するためのカーソル,コントローラー
 cur = conn.cursor()
 #update用のSQL
-update_sql = 'UPDATE students SET name="志村燿平" WHERE studentID=186758'
+update_sql = 'UPDATE students SET 名前="志村燿平" WHERE 学籍番号=186758'
 # データ更新
 cur.execute(update_sql)
-cur.execute('UPDATE students SET studentID= 186758 WHERE name="志村燿平"')
-cur.execute('UPDATE students SET attendance=1 WHERE name="志村燿平"')
+cur.execute('UPDATE students SET 学籍番号= 186758 WHERE 名前="志村燿平"')
+cur.execute('UPDATE students SET 出席=1 WHERE 名前="志村燿平"')
 
 #データベース内の表示
 info = []
@@ -28,7 +32,7 @@ conn.commit()
 #print(len(info))#データベースの人数を出力
 
 #dbの人数をdb.txtに転記する処理
-with open("./database/NumOfPeapledb.txt","w",encoding="utf-8")as datafile:
+with open("./database/population.txt","w",encoding="utf-8")as datafile:
     datafile.write(str(len(info)))
 
 

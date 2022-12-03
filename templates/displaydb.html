@@ -37,13 +37,24 @@
                     {% endfor %}
                 </ul>
 
-        <table border="1" id="getTable">
-            <thead>
-                <tr>
-                    <th width = "500">学籍番号</th> <th width = "500">名前</th> <th width = "500">出席</th> <th width = "500">遅刻</th> <th width = "500">早退</th>
-                </tr>
-            </thead>
-        </table>
+                sqlite> .mode html
+                sqlite> select * from students;
+                <TR><TH>学籍番号</TH>
+                <TH>名前</TH>
+                <TH>出席</TH>
+                </TR>
+                <TR><TD>1</TD>
+                <TD>商品&quot;A</TD>
+                <TD>1000</TD>
+                </TR>
+                <TR><TD>2</TD>
+                <TD>商品&quot;B&quot;</TD>
+                <TD>3000</TD>
+                </TR>
+                <TR><TD>3</TD>
+                <TD>商品C</TD>
+                <TD>5000</TD>
+                </TR>
         <script src="../static/js/displaydb.js"></script>
     </body>
 </html>

@@ -1,33 +1,39 @@
-file = new FileReader();//Filereaderインスタンス作成
+// 表の動的作成
+function makeTable(data, tableId){
+    // 表の作成開始
+    var rows=[];
+    var table = document.createElement("table");
+    let th = []
 
-file.readAsText("../../database/NumOfPeapledb.txt");//txtファイル読み込み
+    
 
-console.log(file.result);
+    // 表に2次元配列の要素を格納
+    for(i = 0; i < data.length; i++){
+        rows.push(table.insertRow(-1));  // 行の追加
+        for(j = 0; j < data[0].length; j++){
+            cell=rows[i].insertCell(-1);
+            cell.appendChild(document.createTextNode(data[i][j]));
+            // 背景色の設定
+            if(i % 2 == 0){
+                cell.style.backgroundColor = "#bbb"; // ヘッダ行
+            }else{
+                cell.style.backgroundColor = "#ddd"; // ヘッダ行以外
+            }
+        }
+    }
+    // 指定したdiv要素に表を加える
+    document.getElementById(tableId).appendChild(table);
+}
+window.onload = function(){ 
+// 表のデータ
+var data = [[11, 12, 13, 44, 55],//ここにデータベースの情報を入れる 
+            [21, 22, 23, 42, 23],
+            [31, 32, 33, 32, 43],
+            [41, 42, 43, 83, 93]];
 
-
-
-
-
-
-
-
-
-
-
-
-
-let rows = ["aa","aaaa","aaaa","aaaa","aa","a","sd","dd"];//行に入る情報//ひとまずダミー情報を入れておく
-let table = document.getElementById("getTable");//table内の情報取得
-
-let colCount = table.rows[0].cells.length;//列数
-let rowCount = rows.length;//行数
-
-console.log("列数は："+colCount+"行数は："+rowCount);
-
-
-
-
-
+// 表の動的作成
+makeTable(data,"table");
+};
 
 
 
