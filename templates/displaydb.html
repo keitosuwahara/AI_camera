@@ -9,52 +9,20 @@
     </head>
 
     <body>
-        <h1>出席表</h1>
-            <p>学籍番号</p>
-                <ul>
-                    {% for id in studentnumlist %}
-                        
-                        <li>{{ id }}</li>
-                        
-                    {% endfor %}
-                </ul>
+        <h1>出席表</h1>{{today}}
+        <table style="border-style: solid">
+            <tr>
+                <th>学籍番号</th> <th>名前</th> <th>出席</th> <th>遅刻</th> <th>早退</th>
+            </tr>
 
-            <p>名前</p>
-                <ul>
-                    {% for name in namelist %}
-                    
-                        <li>{{name}}</li>
-                    
-                    {% endfor %}
-                </ul>
-
-            <p>出欠席</p>
-                <ul>
-                    {% for attendance in attendancelist %}
-                    
-                        <li>{{attendance}}</li>
-                    
-                    {% endfor %}
-                </ul>
-
-                sqlite> .mode html
-                sqlite> select * from students;
-                <TR><TH>学籍番号</TH>
-                <TH>名前</TH>
-                <TH>出席</TH>
-                </TR>
-                <TR><TD>1</TD>
-                <TD>商品&quot;A</TD>
-                <TD>1000</TD>
-                </TR>
-                <TR><TD>2</TD>
-                <TD>商品&quot;B&quot;</TD>
-                <TD>3000</TD>
-                </TR>
-                <TR><TD>3</TD>
-                <TD>商品C</TD>
-                <TD>5000</TD>
-                </TR>
+            {% for std in stdlist %}
+            
+            <tr>
+                <td>{{std["学籍番号"]}}</td> <td>{{std["名前"]}}</td> <td>{{std["出席"]}}</td> <td>{{std["遅刻"]}}</td> <td>{{std["早退"]}}</td>
+            {% endfor %}
+            
+           
+        </table>
         <script src="../static/js/displaydb.js"></script>
     </body>
 </html>

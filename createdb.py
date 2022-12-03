@@ -1,4 +1,9 @@
 import sqlite3
+import datetime
+
+def now():#現在時刻を出す関数
+    dt_now = datetime.datetime.now()#現在時刻
+    return dt_now.strftime('%H時%M分')
 
 #studentテーブルのパス
 stdbname = "./database/students.db"
@@ -24,7 +29,7 @@ def studentdb():
     inserts = [
         (435755,"高田悠",1,0,0),
         (557855,"黒野怜奈",1,0,0),
-        (846556,"トゴーフーバダムツェレン",1,0,0),
+        (846556,"トゴーフーバダムツェレン",1,now(),0),
         (454545,"志村",1,0,0),
         (210103,"諏訪原慶斗",1,0,0),
         (190721,"岩橋大地",1,0,0),
