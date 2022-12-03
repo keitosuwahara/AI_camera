@@ -16,7 +16,7 @@ while True:
         print("画像を正しく読み込めませんでした")
         break
 
-       # 画像データをグレースケール化（白黒）
+        # 画像データをグレースケール化（白黒）
     frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # 顔を検出する
     lists = cascade.detectMultiScale(frame_gray, minSize=(50, 50))
