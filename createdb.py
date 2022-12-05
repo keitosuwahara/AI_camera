@@ -1,5 +1,28 @@
 import sqlite3
 import datetime
+import tkinter
+
+#GUIでデータベースの中身をいじる関数
+def GUI():
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 def now():#現在時刻を出す関数
     dt_now = datetime.datetime.now()#現在時刻

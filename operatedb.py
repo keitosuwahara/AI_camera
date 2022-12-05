@@ -1,7 +1,7 @@
 import sqlite3
 import datetime
 
-#作成した出欠席表をwebに表示とDBの更新をするプログラムです
+#とDBの更新をするプログラムです
 
 
 # DBを作成する（既に作成されていたらこのDBに接続する
