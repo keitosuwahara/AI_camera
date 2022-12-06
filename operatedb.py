@@ -1,7 +1,9 @@
+from createdb import createdb
 import sqlite3
 import datetime
 import tkinter as tk
 import tkinter.messagebox as tmsg
+import glob
 
 
 def now():#現在時刻を出す関数
@@ -15,53 +17,57 @@ tkinterでdb内の閲覧や情報の更新ができるようにする
 """
 
 
-root = tk.Tk()
-root.geometry("800x700")
-root.title("初期設定")
+window = tk.Tk()
+window.geometry("700x250")
+window.title("データベース設定")
+
+# 遷移前の画面の作成                                                            
+top_page = tk.Canvas(width=800, height=800)
+top_page.place(x=0, y=0) # キャンバス
 
 
-#学籍番号を入力するテキストボックスの処理
-id_label = tk.Label(root, text = "学籍番号を入力してください", font = ("Helvetica", 10))
-id_label.place(x=290, y=10)
-id_value = tk.Entry(width=20)
-id_value.place(x=290, y=30)
+
+top_label =  tk.Label(window, text = "項目を選んでください", font = ("Helvetica", 10))
+top_label.place(x=270, y=10)
+
+btn_createdb = tk.Button(window,text = "データベースの新規作成", command = lambda:run_createdb(top_page))
+btn_createdb.place(x=100, y=150)
+
+#createdbを呼び出す
+def run_createdb(widget):
+    widget.place_forget()
+    createdb()
+
+btn_operatedb = tk.Button(window,text = "データベースの新規登録", command = lambda:run_operatedb(top_page))
+btn_operatedb.place(x=280, y=150)
+
+#作成済みテーブルに値を挿入する
+def run_operatedb(widget):
+    widget.place_forget()
+    print("operatedb")
 
 
-#名前を入力するテキストボックスの処理
-name_label = tk.Label(root, text = "名前を入力してください", font = ("Helvetica", 10))
-name_label.place(x=290, y=100)
-name_value =  tk.Entry(width=20)
-name_value.place(x=290, y=120)
+btn_updatedb = tk.Button(window,text = "作成済みデータベースの更新", command = lambda:run_updatedb(top_page))
+btn_updatedb.place(x=460, y=150)
 
-#後々dbに新規格納する値を格納するリスト
-inserts = []
+#作成済みデータベースを操作する
+def run_updatedb(widget):
+    widget.place_forget()
+    files = glob.glob("./database/*.db")
+    for file in files:
+        file[11:]
+    
+    updateTop_page = tk.Canvas(width=800, height=800)
+    updateTop_page.place(x=0, y=0) # キャンバス
+    updateTop_label = tk.Label(window, text = "操作するデータベースを選択してください", font = ("Helvetica", 10))
+    updateTop_label.place(x=225, y=10)
 
-#ボタンクリック時の処理
-def btn_click():
-    #入力された学籍番号を取得
-    global id
-    id = id_value.get()
-
-    #入力された名前を取得
-    global name
-    name = name_value.get()
-
-    #dbに値を入れるリストにidとnameを格納
-    inserts.append((int(id),str(name),0,0,0))
-
-    #ウィンドウを閉じる
-    root.quit()
-
-    #確認メッセージ
-    tmsg.showinfo("確認",f"学籍番号:「{id}」と名前:「{name}」がデータベースに登録されました")
+    #データベース一覧のラジオボタン
 
 
-#ボタン作成
-btn = tk.Button(root, text = "データベースに新規追加", font = ("Helvetica", 14), command = btn_click)
-btn.place(x=290, y=150)
 
 
-root.mainloop()
+window.mainloop()
 
 
 

@@ -2,7 +2,7 @@ import openpyxl as xl
 import sqlite3
 import datetime
 
-#db内の情報をエクエルに転記するプログラム
+#db内の情報をエクセルに転記するプログラム
 def printxl():
     dbname ="./database/students.db"
     conn = sqlite3.connect(dbname)
@@ -62,7 +62,7 @@ def printxl():
         ws.cell(row = index + 2, column = 6, value = soutai)
 
 
-    wb.save('./database/class1.xlsx')
+    wb.save('./database/xl_dir/class1.xlsx')
 
 
 

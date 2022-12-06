@@ -1,4 +1,4 @@
-from createdb import studentdb, admindb
+from createdb import createdb
 from printxl import printxl
 from flask import Flask, render_template, request
 import sqlite3
@@ -33,8 +33,6 @@ def top():
 
 
 
-studentdb()
-admindb()
 printxl()
 if __name__ == "__main__":
     app.run(debug=True)
