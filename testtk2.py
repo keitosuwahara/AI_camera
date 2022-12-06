@@ -5,11 +5,11 @@ import sqlite3
 
 # ウィンドウの作成                                                              
 window = tk.Tk()
-window.geometry("500x200")
+window.geometry("1000x200")
 window.title("データベース新規作成")
 
 # 遷移前の画面の作成                                                            
-def_dbname = tk.Canvas(width=400, height=400)
+def_dbname = tk.Canvas(width=800, height=800)
 def_dbname.place(x=0, y=0) # キャンバス
 
 #新規DBの名前を入力するテキストボックスの処理
@@ -36,7 +36,7 @@ def btn_click_to_prikey(widget):
     dbname = dbname_value.get()
 
     #新しい画面を作る
-    def_prikey = tk.Canvas(width=400, height=400)
+    def_prikey = tk.Canvas(width=800, height=800)
     def_prikey.place(x=0, y=0)
 
     #このページのラベル
@@ -86,7 +86,7 @@ def btn_click_to_subkey1(widget):
     prikey = prikey_value.get()
 
     #新しい画面を作る
-    def_subkey1 = tk.Canvas(width=400, height=400)
+    def_subkey1 = tk.Canvas(width=800, height=800)
     def_subkey1.place(x=0, y=0)
 
     #このページのラベル
@@ -134,7 +134,7 @@ def btn_click_to_subkey2(widget):
     subkey1 = subkey1_value.get()
 
     #新しい画面を作る
-    def_subkey2 = tk.Canvas(width=400, height=400)
+    def_subkey2 = tk.Canvas(width=800, height=800)
     def_subkey2.place(x=0, y=0)
 
     #このページのラベル
@@ -184,7 +184,7 @@ def btn_click_to_subkey3(widget):
 
     #新しい画面を作る
     global def_subkey3
-    def_subkey3 = tk.Canvas(width=400, height=400)
+    def_subkey3 = tk.Canvas(width=800, height=800)
     def_subkey3.place(x=0, y=0)
 
     #このページのラベル
@@ -232,17 +232,17 @@ def btn_click_to_subkey4(widget):
 
     #新しい画面を作る
     global def_subkey4
-    def_subkey4 = tk.Canvas(width=400, height=400)
+    def_subkey4 = tk.Canvas(width=800, height=800)
     def_subkey4.place(x=0, y=0)
 
     #このページのラベル
-    subkey4_label = tk.Label(def_subkey3, text=f"主キー:「{prikey}」のサブキー4を入力してください", font = ("Helvetica", 10))
+    subkey4_label = tk.Label(def_subkey4, text=f"主キー:「{prikey}」のサブキー4を入力してください", font = ("Helvetica", 10))
     subkey4_label.place(x=100, y=10)
 
     #入力したもののプレビュー
-    p = tk.Label(def_subkey3, text="プレビュー", font = ("Helvetica", 9))
+    p = tk.Label(def_subkey4, text="プレビュー", font = ("Helvetica", 9))
     p.place(x=10, y=160)
-    preview = tk.Label(def_subkey3, text=f"DB名:{dbname} ,主キー:{prikey} ,サブキー1:{subkey1} ,サブキー2:{subkey2} ,サブキー3:{subkey3}", font = ("Helvetica", 9))
+    preview = tk.Label(def_subkey4, text=f"DB名:{dbname} ,主キー:{prikey} ,サブキー1:{subkey1} ,サブキー2:{subkey2} ,サブキー3:{subkey3}", font = ("Helvetica", 9))
     preview.place(x=10, y=180)
 
     #サブキー4を決めるテキストボックス
@@ -266,24 +266,29 @@ def btn_click_to_subkey4(widget):
     subkey4_str_or = tk.Radiobutton(window, value = 1, variable = subkey4_var, text = "文字列")
     subkey4_str_or.place(x=280, y=100)
 
-    def_subkey4_btn = tk.Button(def_subkey3, text = "完了", command = lambda:confirmation(def_subkey4))
+    def_subkey4_btn = tk.Button(def_subkey4, text = "完了", command = lambda:confirm(def_subkey4))
     def_subkey4_btn.place(x=220, y=140)
 
 
 
 #最終確認
-def confirmation(widget):
+def confirm(widget):
     widget.place_forget() # def_subkey4を隠す
 
     #入力されたサブキー4を取得
     global subkey4
     subkey4 = subkey4_value.get()
 
+    #新しい画面を作る
+    global def_confirm
+    def_confirm = tk.Canvas(width=800, height=800)
+    def_confirm.place(x=0, y=0)
+
     #新規作成するDBの確認
-    p = tk.Label(def_subkey4, text="プレビュー", font = ("Helvetica", 9))
-    p.place(x=10, y=160)
-    preview = tk.Label(def_subkey4, text=f"DB名:{dbname} ,主キー:{prikey} ,サブキー1:{subkey1} ,サブキー2:{subkey2} ,サブキー3:{subkey3} ,サブキー4:{subkey4}", font = ("Helvetica", 9))
-    preview.place(x=10, y=180)
+    p = tk.Label(def_confirm, text="この内容で新規作成します", font = ("Helvetica", 9))
+    p.place(x=300, y=10)
+    preview = tk.Label(def_confirm, text=f"DB名:{dbname} ,主キー:{prikey} ,サブキー1:{subkey1} ,サブキー2:{subkey2} ,サブキー3:{subkey3} ,サブキー4:{subkey4}", font = ("Helvetica", 9))
+    preview.place(x=10, y=100)
 
 
 window.mainloop()
@@ -299,3 +304,5 @@ if prikey_var == 0:
 else:
     new_insert.append((str(prikey)))
     print("文字列")
+
+print(f"DB名:{dbname} ,主キー:{prikey} ,サブキー1:{subkey1} ,サブキー2:{subkey2} ,サブキー3:{subkey3} ,サブキー4:{subkey4}")
