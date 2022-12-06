@@ -24,7 +24,7 @@ def select_list():
     selected_index = listbox.curselection()
     global selected_module
     selected_module = listbox.get(selected_index)
-    
+    print(selected_module)
 
 
 window.mainloop()
@@ -35,6 +35,14 @@ dbname =f"./database/{selected_module}"
 conn = sqlite3.connect(dbname)
 #SQLiteを操作するためのカーソル,コントローラー
 cur = conn.cursor()
+info = []
+records = cur.execute(f"SELECT * FROM {selected_module[:-3]}")
+for record in records:
+    info.append(list(record))
+print(info+"info")
+
+# コミットしないと登録が反映されない
+conn.commit()
 
 conn.commit()
 
