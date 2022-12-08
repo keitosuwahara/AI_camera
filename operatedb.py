@@ -4,6 +4,7 @@ import datetime
 import tkinter as tk
 import tkinter.messagebox as tmsg
 import glob
+from testtk import show_db
 
 
 def now():#現在時刻を出す関数
@@ -44,11 +45,15 @@ btn_operatedb.place(x=280, y=150)
 #作成済みテーブルに値を挿入する
 def run_operatedb(widget):
     widget.place_forget()
-    print("operatedb")
+    operateTop_page = tk.Canvas(width=800, height=800)
+    operateTop_page.place(x=0, y=0) # キャンバス
+    operateTop_label = tk.Label(window, text = "値入力するデータベースを選択してください", font = ("Helvetica", 10))
+    operateTop_label.place(x=225, y=10)
 
 
 btn_updatedb = tk.Button(window,text = "作成済みデータベースの更新", command = lambda:run_updatedb(top_page))
 btn_updatedb.place(x=460, y=150)
+
 
 #作成済みデータベースを操作する
 def run_updatedb(widget):
@@ -62,7 +67,8 @@ def run_updatedb(widget):
     updateTop_label = tk.Label(window, text = "操作するデータベースを選択してください", font = ("Helvetica", 10))
     updateTop_label.place(x=225, y=10)
 
-    #データベース一覧のラジオボタン
+
+
 
 
 

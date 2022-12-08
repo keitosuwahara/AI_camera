@@ -1,6 +1,8 @@
 import tkinter as tk
 import tkinter.messagebox as tmsg
 import sqlite3
+import os
+from testdl import remove_latestdb
 
 #データベースを新しく作る時のプログラム
 def createdb():
@@ -26,22 +28,6 @@ def createdb():
     prikey_value = tk.Entry(width=20)
     prikey_value.place(x=175, y=80)
 
-    intorstr_label =tk.Label(window, text = "数値か文字列か選択してください", font = ("Helvetica", 10))
-    intorstr_label.place(x=300, y=50)
-
-    # チェック有無変数
-    global prikey_var
-    prikey_var = tk.IntVar()
-    # value=0のラジオボタンにチェックを入れる
-    prikey_var.set(0)
-
-    #数値か文字列か決めるラジオボタン
-    prikey_int_or = tk.Radiobutton(window, value = 0, variable = prikey_var, text = "数値")
-    prikey_int_or.place(x=300, y=80)
-
-    prikey_str_or = tk.Radiobutton(window, value = 1, variable = prikey_var, text = "文字列")
-    prikey_str_or.place(x=350, y=80)
-
 
     #新規サブキー1
     subkey1_label = tk.Label(window, text = "サブキー1を入力してください", font = ("Helvetica", 10))
@@ -49,18 +35,6 @@ def createdb():
     subkey1_value = tk.Entry(width=20)
     subkey1_value.place(x=175, y=130)
 
-    # チェック有無変数
-    global subkey1_var
-    subkey1_var = tk.IntVar()
-    # value=0のラジオボタンにチェックを入れる
-    subkey1_var.set(0)
-    #数値か文字列か決めるラジオボタン
-
-    subkey1_int_or = tk.Radiobutton(window, value = 0, variable = subkey1_var, text = "数値")
-    subkey1_int_or.place(x=300, y=130)
-
-    subkey1_str_or = tk.Radiobutton(window, value = 1, variable = subkey1_var, text = "文字列")
-    subkey1_str_or.place(x=350, y=130)
 
     #新規サブキー2
     subkey2_label = tk.Label(window, text = "サブキー2を入力してください", font = ("Helvetica", 10))
@@ -68,18 +42,6 @@ def createdb():
     subkey2_value = tk.Entry(width=20)
     subkey2_value.place(x=175, y=180)
 
-    # チェック有無変数
-    global subkey2_var
-    subkey2_var = tk.IntVar()
-    # value=0のラジオボタンにチェックを入れる
-    subkey2_var.set(0)
-    #数値か文字列か決めるラジオボタン
-
-    subkey2_int_or = tk.Radiobutton(window, value = 0, variable = subkey2_var, text = "数値")
-    subkey2_int_or.place(x=300, y=180)
-
-    subkey2_str_or = tk.Radiobutton(window, value = 1, variable = subkey2_var, text = "文字列")
-    subkey2_str_or.place(x=350, y=180)
 
     #新規サブキー3
     subkey3_label = tk.Label(window, text = "サブキー3を入力してください", font = ("Helvetica", 10))
@@ -87,38 +49,12 @@ def createdb():
     subkey3_value = tk.Entry(width=20)
     subkey3_value.place(x=175, y=230)
 
-    # チェック有無変数
-    global subkey3_var
-    subkey3_var = tk.IntVar()
-    # value=0のラジオボタンにチェックを入れる
-    subkey3_var.set(0)
-    #数値か文字列か決めるラジオボタン
-
-    subkey3_int_or = tk.Radiobutton(window, value = 0, variable = subkey3_var, text = "数値")
-    subkey3_int_or.place(x=300, y=230)
-
-    subkey3_str_or = tk.Radiobutton(window, value = 1, variable = subkey3_var, text = "文字列")
-    subkey3_str_or.place(x=350, y=230)
 
     #新規サブキー4
     subkey4_label = tk.Label(window, text = "サブキー4を入力してください", font = ("Helvetica", 10))
     subkey4_label.place(x=80, y=260)
     subkey4_value = tk.Entry(width=20)
     subkey4_value.place(x=175, y=280)
-
-    # チェック有無変数
-    global subkey4_var
-    subkey4_var = tk.IntVar()
-    # value=0のラジオボタンにチェックを入れる
-    subkey4_var.set(0)
-    #数値か文字列か決めるラジオボタン
-
-    subkey4_int_or = tk.Radiobutton(window, value = 0, variable = subkey4_var, text = "数値")
-    subkey4_int_or.place(x=300, y=280)
-
-    subkey4_str_or = tk.Radiobutton(window, value = 1, variable = subkey4_var, text = "文字列")
-    subkey4_str_or.place(x=350, y=280)
-
 
     #次のページへの処理
     def_new_db_btn = tk.Button(window,text = "次へ", command = lambda:btn_click_to_confirm(def_newdb))
@@ -195,10 +131,12 @@ def createdb():
 
         # コミットしないと登録が反映されない
         conn.commit()
+        tmsg.showinfo("OK","正常に作成されました")
 
     except sqlite3.OperationalError:
+        print(dbname)
         tmsg.showinfo("エラー","重複しているキーがあるか数字など認められないキーを使っています")
-
+        remove_latestdb()
 if __name__ == "__main__":
     createdb()
 
