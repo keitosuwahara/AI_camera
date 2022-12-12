@@ -15,9 +15,9 @@ def printxl():
     #SQLiteを操作するためのカーソル,コントローラー
     cur = conn.cursor()
     #データベース内の表示
-    info = []
+    info = ["111111","仮仮","0","218","2187"]#仮でデータを入れておく##二次元配列にする→[[],[],[],[],[]]
     keys = []
-    records = cur.execute("SELECT * FROM students")
+    records = cur.execute(f"SELECT * FROM {db}")
     for record in records:
         info.append(list(record))
     #キーの取得
@@ -26,8 +26,8 @@ def printxl():
 
     conn.commit()
 
-    stdlist = [dict(zip(keys,item)) for item in info]#keyとinfoをまとめて辞書型にする
-    print(keys)
+    stdlist = dict(zip(keys,info))#keyとinfoをまとめて辞書型にする
+    print(stdlist)
 
     wb = xl.Workbook()
     ws = wb.worksheets[0]
@@ -36,27 +36,8 @@ def printxl():
 
     ws.cell(row = 1, column = 1, value = str(today)+"時点")
 
-    for i in range(0,5):#キーのみを転記する
+    for i in range(0,len(keys)):#キーのみを転記する
         ws.cell(row = 1, column = i+2, value = keys[i])
-
-    
-    #キーをそれぞれローマ字にしてそれに合った変数にする
-    kakasi = pykakasi.kakasi() # インスタンスの作成
-    kakasi.setMode('H', 'a') # ひらがなをローマ字に変換するように設定
-    kakasi.setMode('K', 'a') # カタカナをローマ字に変換するように設定
-    kakasi.setMode('J', 'a') # 漢字をローマ字に変換するように設定
-    conversion = kakasi.getConverter() # 上記モード設定の適用
-
-    vars = []#ローマ字にした変数のリスト
-
-    for key in keys:
-        vars.append(conversion.do(key)+"s") # keyをローマ字に変換する処理
-    print(vars)
-    
-
-    #それぞれの属性の空リストを作る
-    for index, var in enumerate(vars):
-        var = []
     
     
     """

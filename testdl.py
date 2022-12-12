@@ -1,12 +1,9 @@
-import os
-from pathlib import Path
+stds = {"学籍番号":[121212,12313,4234235,2131,12122],"名前":["山田","振動","田中","小山","田辺"],"出席":[12,1,1,1,1],"遅刻":[0,0,0,0,0],"早退":[0,0,0,0,0]}
 
-def remove_latestdb():
-    p = Path("./database")
-    files = list(p.glob("*"))
-    file_updates = {file_path: os.stat(file_path).st_mtime for file_path in files}
+for i in stds["学籍番号"]:
+    print(i)
 
-    newst_file_path = max(file_updates, key=file_updates.get)
-    os.remove(newst_file_path)
 
-#最新ファイルのみ抜き出す
+
+
+
