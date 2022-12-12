@@ -93,7 +93,7 @@ def show_db():
 
 
 """
- # DBを作成する（既に作成されていたらこのDBに接続する
+# DBを作成する（既に作成されていたらこのDBに接続する
     dbname =f"./database/{db_value}"
     conn = sqlite3.connect(dbname)
     #SQLiteを操作するためのカーソル,コントローラー

@@ -167,34 +167,49 @@ def run_operatedb(widget):
     operateTop_page.place(x=0, y=0) # キャンバス
     operateTop_label = tk.Label(window, text = "値入力するデータベースを選択してください", font = ("Helvetica", 10))
     operateTop_label.place(x=225, y=10)
-    operateTop_btn = tk.Button(window, text = "新規登録するデータベースの選択", command =lambda:select_db())
-    operateTop_btn.place(x=280, y=150)
 
-
-def select_db():
-    selectdb_page = tk.Canvas(width=800, height=800)
-    selectdb_page.place(x=0, y=0) # キャンバス
-
-    #dbを取り出す
+        #dbを取り出す
+    
     dbs = [os.path.basename(file) for file in glob.glob("./database/*.db")]
 
+    btn = []
     #dbを一つずつ取り出す
     for index, db in enumerate(dbs):
-        ind = index
+        btn.append(tk.Button(window, text = dbs[index][:-3], command = operate_container(dbs[index][:-3])))
+        btn[index].place(x=250, y=40*(1+index))
+        print(btn)
+
+
+
+##押されたボタンの情報を取得する方法は今度考える
+
+#値入力するデータベース
+def operate_container(inp_db):
+    print(inp_db)
+    """
+    operate_container_page = tk.Canvas(width=800, height=800)
+    operate_container_page.place(x=0, y=0) # キャンバス
+
+    operate_container_label = tk.Label(window, text = f"{inp_db}の値入力", font = ("Helvetica", 10))
+    operate_container_label.place(x=225, y=10)
+
     
-    for i in range(0, 50*len(dbs), 50):#           ↓ここの作成
-        selectdb_btn = tk.Button(window, text = dbs[ind][:-3], command = lambda:operate_container())
-        selectdb_btn.place(x=250, y=50+i)
+
+    input_db = f"./database/{inp_db}.db"
+
+    # DBを作成する（既に作成されていたらこのDBに接続する)
+    conn = sqlite3.connect(input_db)
+
+    #SQLiteを操作するためのカーソル,コントローラー
+    cur = conn.cursor()
+
+    """
 
 
-def operate_container():
-    print("okokokok")
-    
 
 
 
-
-btn_updatedb = tk.Button(window,text = "作成済みデータベースの更新", command = lambda:run_updatedb(top_page))
+btn_updatedb = tk.Button(window,text = "作成済みデータベースの編集", command = lambda:run_updatedb(top_page))
 btn_updatedb.place(x=460, y=150)
 
 
@@ -207,7 +222,7 @@ def run_updatedb(widget):
     
     updateTop_page = tk.Canvas(width=800, height=800)
     updateTop_page.place(x=0, y=0) # キャンバス
-    updateTop_label = tk.Label(window, text = "操作するデータベースを選択してください", font = ("Helvetica", 10))
+    updateTop_label = tk.Label(window, text = "編集するデータベースを選択してください", font = ("Helvetica", 10))
     updateTop_label.place(x=225, y=10)
 
 
