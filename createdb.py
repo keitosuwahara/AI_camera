@@ -1,15 +1,15 @@
 import tkinter as tk
 import tkinter.messagebox as tmsg
 import sqlite3
-import os
-from testdl import remove_latestdb
+
+    # ウィンドウの作成                                                              
+
+#operatedbに直接書いてしまったが一旦完成とする
+
 
 #データベースを新しく作る時のプログラム
 def createdb():
-    # ウィンドウの作成                                                              
-    window = tk.Tk()
-    window.geometry("800x500")
-    window.title("データベース新規作成")
+
 
     # 遷移前の画面の作成                                                            
     def_newdb = tk.Canvas(width=800, height=800)
@@ -136,7 +136,6 @@ def createdb():
     except sqlite3.OperationalError:
         print(dbname)
         tmsg.showinfo("エラー","重複しているキーがあるか数字など認められないキーを使っています")
-        remove_latestdb()
 if __name__ == "__main__":
     createdb()
 

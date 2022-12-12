@@ -2,6 +2,10 @@ import openpyxl as xl
 import sqlite3
 import datetime
 
+#アイデア
+    #西暦と月日+名前で以前の出席を残す
+    #月ごとのフォルダを自動で作り一年以上たったフォルダから消していく
+
 #db内の情報をエクセルに転記するプログラム
 def printxl():
     dbname ="./database/students.db"
