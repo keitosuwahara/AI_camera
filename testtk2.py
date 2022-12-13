@@ -1,9 +1,53 @@
-import os 
-import glob
+0
+5
+10
+15
+20
+25
+30
+1
+6
+11
+16
+21
+26
+31
+2
+7
+12
+17
+22
+27
+32
+3
+8
+13
+18
+23
+28
+33
+4
+9
+14
+19
+24
+29
+34
 
 
 
-dbs = [os.path.basename(file) for file in glob.glob("./database/*.db")]
 
-for index, db in enumerate(dbs):
-    print(dbs[index][:-3])
+5
+10
+15
+20
+25
+30
+6
+11
+16
+21
+26
+31
+
+

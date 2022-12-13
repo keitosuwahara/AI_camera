@@ -1,6 +1,5 @@
 import openpyxl as xl
 import sqlite3
-import pykakasi
 import datetime
 
 #アイデア
@@ -15,59 +14,46 @@ def printxl():
     #SQLiteを操作するためのカーソル,コントローラー
     cur = conn.cursor()
     #データベース内の表示
-    info = ["111111","仮仮","0","218","2187"]#仮でデータを入れておく##二次元配列にする→[[],[],[],[],[]]
+    info = []#仮でデータを入れておく##二次元配列にする→[[],[],[],[],[]]
     keys = []
+    stds = []
+
+    #選択したDBのそれぞれの行をリストで取り出す
     records = cur.execute(f"SELECT * FROM {db}")
     for record in records:
         info.append(list(record))
+    print(info)
+
     #キーの取得
     for desc in cur.description:
         keys.append(desc[0])
 
     conn.commit()
 
-    stdlist = dict(zip(keys,info))#keyとinfoをまとめて辞書型にする
-    print(stdlist)
+
+#↓エクセルの操作
 
     wb = xl.Workbook()
     ws = wb.worksheets[0]
 
     today = datetime.date.today()#今日の日付
 
-    ws.cell(row = 1, column = 1, value = str(today)+"時点")
+    ws.cell(row = 1, column = 1, value = str(today)+"時点")#日付けの転記
 
     for i in range(0,len(keys)):#キーのみを転記する
         ws.cell(row = 1, column = i+2, value = keys[i])
     
+    tpm = []
+    datas = []#順番通りのリストを作る→[[DBの0番目のみ],[DBの1番目のみ],[DBの2番目のみ]]
+
+    for i in range(0,len(info)):#リスト内リストの数
+        for j in range(0,len(info)):#リスト内リストの要素数
+            tpm.append(info[i][j])
     
-    """
-    #それぞれの属性をリスト化
-    for std in stdlist:
-        ids.append(std["学籍番号"])
-        names.append(std["名前"])
-        attends.append(std["出席"])
-        tikokus.append(std["遅刻"])
-        soutais.append(std["早退"])
     
     
 
-    #学籍番号の転記
-    for index, id in enumerate(ids):
-        ws.cell(row = index + 2, column = 2, value = id)
-    #名前の転記
-    for index, name in enumerate(names):
-        ws.cell(row = index + 2, column = 3, value = name)
-    #出席の転記
-    for index, attend in enumerate(attends):
-        ws.cell(row = index + 2, column = 4, value = attend)
-    #遅刻の転記
-    for index, tikoku in enumerate(tikokus):
-        ws.cell(row = index + 2, column = 5, value = tikoku)
-    #早退の転記
-    for index, soutai in enumerate(soutais):
-        ws.cell(row = index + 2, column = 6, value = soutai)
-
-    """
+    
     wb.save(f'./database/xl_dir/{today}.xlsx')
 
 

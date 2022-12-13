@@ -9,7 +9,7 @@ import sqlite3
 
 #データベースを新しく作る時のプログラム
 def createdb():
-
+    
 
     # 遷移前の画面の作成                                                            
     def_newdb = tk.Canvas(width=800, height=800)
