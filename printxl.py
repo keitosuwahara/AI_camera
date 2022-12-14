@@ -5,10 +5,10 @@ import datetime
 #アイデア
     #西暦と月日+名前で以前の出席を残す
     #月ごとのフォルダを自動で作り一年以上たったフォルダから消していく
-db="students"
+
 
 #db内の情報をエクセルに転記するプログラム
-def printxl():
+def printxl(db):
     dbname =f"./database/{db}.db"
     conn = sqlite3.connect(dbname)
     #SQLiteを操作するためのカーソル,コントローラー
@@ -49,6 +49,9 @@ def printxl():
     ws.cell(row = 2, column = 1, value = str(month)+"月"+str(day)+"日")#月日の転記
     ws.cell(row = 3, column = 1, value = str(hour)+"時"+str(minutes)+"分")#時分の転記
     ws.cell(row = 4, column = 1, value = str(sec)+"秒時点")#秒の転記
+    ws.cell(row = 5, column = 1, value = "DB名は")
+    ws.cell(row = 6, column = 1, value = db)#データベース名の転記
+    
 
     
     
@@ -82,10 +85,11 @@ def printxl():
             ws.cell(row=2+i, column=2+ind, value=std[i])
     
     wb.save(f'./database/xl_dir/{today}.xlsx')
+    print("プログラムが終了しました")
 
 
 if __name__ == "__main__":
-    printxl()
+    printxl("students")
 
 
 
