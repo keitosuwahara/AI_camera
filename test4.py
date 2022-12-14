@@ -1,4 +1,7 @@
 from printxl import printxl
 
 db = "students"
-printxl(db)
+if db == "yuyu":
+    print("yoyo")
+else:
+    printxl(db)
