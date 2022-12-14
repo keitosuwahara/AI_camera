@@ -1,24 +1,20 @@
 import sqlite3
 inserts = [
-        (435755,"高田悠",1,1,1),
-        (557855,"黒野怜奈",1,1,1),
-        (846556,"トゴーフーバダムツェレン",1,1,1),
-        (454545,"志村",1,1,1),
-        (210103,"諏訪原慶斗",1,0,1),
-        (190721,"岩橋大地",1,0,0),
-        (200284,"桃崎奏斗",1,0,0)
+        ("323443","高田悠","1","2","3"),
+        ("353322","黒野怜奈","1","2","3"),
+        ("234567","トゴーフーバダムツェレン","1","2","3"),
+        ("454545","志村","1","2","3"),
+        ("210103","諏訪原慶斗","1","2","3"),
+        ("755456","岩橋大地","1","2","3"),
+        ("305847","桃崎奏斗","1","2","3")
         ]
-
-for ii in inserts:
-    for suf, i in enumerate(list(ii)):
-        if suf == 0:
-            print(i)
 
 dbname ="./database/students.db"
 conn = sqlite3.connect(dbname)
 #SQLiteを操作するためのカーソル,コントローラー
 cur = conn.cursor()
-cur.executemany("insert into students values (?,?,?,?,?)",inserts)
+cur.execute("CREATE TABLE IF NOT EXISTS students(学籍番号 STRING PRIMARY KEY , 名前 STRING, 出席 STRING, 遅刻 STRING, 早退 STRING)")
+cur.executemany("INSERT INTO students values (?,?,?,?,?)",inserts)
 
 conn.commit()
 

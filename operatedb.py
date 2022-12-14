@@ -143,7 +143,7 @@ def run_createdb(widget):
             cur = conn.cursor()
             
             #テーブルの作成
-            cur.execute(f"CREATE TABLE IF NOT EXISTS {def_dbname}({def_prikey} INTEGER PRIMARY KEY , {def_subkey1} STRING, {def_subkey2} INTEGER, {def_subkey3} INTEGER, {def_subkey4} INTEGER)") 
+            cur.execute(f"CREATE TABLE IF NOT EXISTS {def_dbname}({def_prikey} STRING PRIMARY KEY , {def_subkey1} STRING, {def_subkey2} STRING, {def_subkey3} STRING, {def_subkey4} STRING)") 
             
             # コミットしないと登録が反映されない
             conn.commit()
