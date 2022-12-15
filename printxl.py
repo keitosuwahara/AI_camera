@@ -1,6 +1,8 @@
 import openpyxl as xl
 import sqlite3
 import datetime
+import os
+import shutil
 
 #アイデア
     #西暦と月日+名前で以前の出席を残す
@@ -84,8 +86,18 @@ def printxl(db):
         for i in range(0, len(std)):
             ws.cell(row=2+i, column=2+ind, value=std[i])
     
-    wb.save(f'./database/xl_dir/{today}.xlsx')
+    os.makedirs(f"./database/xl_dir/{year}_{month}", exist_ok=True)
+    wb.save(f'./database/xl_dir/{year}_{month}/{today}.xlsx')
+
+    #2年前の出席シートを削除
+    dir_path = './database/xl_dir'
+    files = os.listdir(dir_path)  # ディレクトリ内のファイルリストを取得
+    if len(files) >= 25:
+        files.sort()  # ファイルリストを昇順に並び替え
+        shutil.copytree(f'./database/xl_dir/{files[0]}', f'./static/ゴミ箱/xl_dirs/{files[0]}')#削除する前にゴミ箱に移す
+        shutil.rmtree(f"./database/xl_dir/{files[0]}")# 先頭のファイル(=一番古いファイル名)を削除
     print("プログラムが終了しました")
+    #もう少し確実性のあるフォルダの日時の遡り方を考える
 
 
 if __name__ == "__main__":
