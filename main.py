@@ -4,19 +4,10 @@ from flask import Flask, render_template, request
 import sqlite3
 import datetime
 
+
 today = datetime.date.today()#今日の日付
-
-date = datetime.datetime.now()
-year = date.year
-month = date.month
-day = date.day
-hour = date.hour
-minutes = date.minute
-sec = date.second
-
-
-# DBを作成する（既に作成されていたらこのDBに接続する
 db = "students"
+# DBを作成する（既に作成されていたらこのDBに接続する
 dbname = f"./database/{db}.db"
 conn = sqlite3.connect(dbname)
 #SQLiteを操作するためのカーソル,コントローラー
@@ -39,7 +30,7 @@ app = Flask(__name__)
 #トップページ
 @app.route("/", methods=["GET","POST"])
 def top():
-    return render_template("/displaydb.html", stdlist = stdlist, today = today, year = year, month = month, day = day, hour = hour, minutes = minutes, sec = sec)#stdlistはdb内の情報が辞書型で入っている変数
+    return render_template("/displaydb.html", stdlist = stdlist, today = today)#stdlistはdb内の情報が辞書型で入っている変数
 
 
 
