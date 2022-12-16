@@ -4,8 +4,9 @@ from flask import Flask, render_template, request
 import sqlite3
 import datetime
 
+db = "students"
 # DBを作成する（既に作成されていたらこのDBに接続する
-dbname ="./database/students.db"
+dbname = f"./database/{db}.db"
 conn = sqlite3.connect(dbname)
 #SQLiteを操作するためのカーソル,コントローラー
 cur = conn.cursor()
@@ -32,8 +33,7 @@ def top():
     return render_template("/displaydb.html", stdlist = stdlist, today = today)#stdlistはdb内の情報が辞書型で入っている変数
 
 
-
-#printxl()
+printxl(db)
 if __name__ == "__main__":
     app.run(debug=True)
 

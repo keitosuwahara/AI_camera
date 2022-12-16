@@ -51,7 +51,7 @@ def printxl(db):
     ws.cell(row = 2, column = 1, value = str(month)+"月"+str(day)+"日")#月日の転記
     ws.cell(row = 3, column = 1, value = str(hour)+"時"+str(minutes)+"分")#時分の転記
     ws.cell(row = 4, column = 1, value = str(sec)+"秒時点")#秒の転記
-    ws.cell(row = 5, column = 1, value = "DB名は")
+    ws.cell(row = 5, column = 1, value = "DB名")
     ws.cell(row = 6, column = 1, value = db)#データベース名の転記
     
 
@@ -96,7 +96,7 @@ def printxl(db):
         files.sort()  # ファイルリストを昇順に並び替え
         shutil.copytree(f'./database/xl_dir/{files[0]}', f'./static/ゴミ箱/xl_dirs/{files[0]}')#削除する前にゴミ箱に移す
         shutil.rmtree(f"./database/xl_dir/{files[0]}")# 先頭のファイル(=一番古いファイル名)を削除
-    print("プログラムが終了しました")
+    print("printxlが正常に終了し、Excelに転記されました")
     #もう少し確実性のあるフォルダの日時の遡り方を考える
 
 
