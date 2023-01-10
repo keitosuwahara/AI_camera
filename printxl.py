@@ -193,6 +193,7 @@ def userFromXlToDB():
     print('学籍番号', ids)
     print('名前', names)
 
+
     # ロードしたExcelファイルを閉じる
     userwb.close()
     #作成済みフォルダに入れる
@@ -201,9 +202,9 @@ def userFromXlToDB():
 
 
 if __name__ == "__main__":
-    printXl("students")
     createUserForm()
     userFromXlToDB()
+    printXl("students")
 
 
 
