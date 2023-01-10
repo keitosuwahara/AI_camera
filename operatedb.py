@@ -155,7 +155,7 @@ def run_createdb(widget):
 
 
 
-btn_operatedb = tk.Button(window,text = "データベースの新規登録", command = lambda:run_operatedb(top_page))
+btn_operatedb = tk.Button(window,text = "値の新規登録", command = lambda:run_operatedb(top_page))
 btn_operatedb.place(x=280, y=150)
 
 

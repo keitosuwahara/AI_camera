@@ -9,7 +9,9 @@
     </head>
 
     <body>
-        <h1>出席表</h1>{{today}}
+        <h1>出席表</h1>
+        <div id="time"></div>
+
         <table style="border-style: solid">
             <tr>
                 <th>学籍番号</th> <th>名前</th> <th>出席</th> <th>遅刻</th> <th>早退</th>
@@ -21,8 +23,8 @@
                 <td>{{std["学籍番号"]}}</td> <td>{{std["名前"]}}</td> <td>{{std["出席"]}}</td> <td>{{std["遅刻"]}}</td> <td>{{std["早退"]}}</td>
             {% endfor %}
             
-           
         </table>
         <script src="../static/js/displaydb.js"></script>
+        <script src="../static/js/Date.js"></script>
     </body>
 </html>

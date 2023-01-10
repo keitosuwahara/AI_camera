@@ -96,7 +96,9 @@ def printxl(db):
         files.sort()  # ファイルリストを昇順に並び替え
         shutil.copytree(f'./database/xl_dir/{files[0]}', f'./static/ゴミ箱/xl_dirs/{files[0]}')#削除する前にゴミ箱に移す
         shutil.rmtree(f"./database/xl_dir/{files[0]}")# 先頭のファイル(=一番古いファイル名)を削除
-    print("printxlが正常に終了し、Excelに転記されました")
+
+    print("printxl関数が正常に実行されExcelに転記しました")
+
     #もう少し確実性のあるフォルダの日時の遡り方を考える
 
 
