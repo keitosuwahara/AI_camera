@@ -131,11 +131,13 @@ def createUserForm():#ユーザー情報を最初に入力する時エクセル�
     ws.merge_cells("A10:B10")
     ws.merge_cells("A11:B11")
     ws.merge_cells("A12:B12")
-    ws.merge_cells("K4:S4")
+    ws.merge_cells("K4:R4")
+    ws.merge_cells("K5:S5")
     ws['A10'].value = "学籍番号は半角厳守"
     ws["A11"].value = "必ず太枠の中に入力してください"
     ws["A12"].value = "必ず一番上から入力してください"
-    ws["K4"].value = "入力が終わったら名前を変えずに”名前を付けて保存”をして”登録用紙”フォルダの中の”作成済み生徒情報”に保存してください"
+    ws["K4"].value = "入力が終わったら名前を変えずに”名前を付けて保存”をして"
+    ws["K5"].value = "”登録用紙”フォルダの中の”作成済み生徒情報”に保存してください"
 
 
 
@@ -205,7 +207,7 @@ def userFromXlToDB():
     # ロードしたExcelファイルを閉じる
     userwb.close()
     #作成済みフォルダに入れる
-    userwb.save(f"./登録用紙/{year}年度作成済み生徒情報.xlsx")
+    userwb.save(f"./登録用紙/{year}年度生徒情報.xlsx")
 
     inserts = []
 
@@ -214,7 +216,7 @@ def userFromXlToDB():
     
     print(inserts)
 
-    if os.path.exists("./database/students.db"):
+    if os.path.exists("./database/students.db"):#dbがあったらひとまず消す
         os.remove("./database/students.db")
 
     dbname =f"./database/students.db"
@@ -233,7 +235,10 @@ def userFromXlToDB():
 
 if __name__ == "__main__":
     createUserForm()
-    userFromXlToDB()
+    if os.path.isfile("./登録用紙/作成済み生徒情報/2023年度生徒情報登録用紙.xlsx"):
+        userFromXlToDB()
+    else:
+        print("エクセルファイルがないのでuserFromXlToDBは実行してません")
     printXl("students")
 
 
