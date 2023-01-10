@@ -1,38 +1,13 @@
-keys = ["学籍番号","名前","出席","遅刻","早退"]
-info =[[190721, '岩橋大地', 1, 2, 3], [200284, '桃崎奏斗', 1, 2, 3], [210103, '諏訪原慶斗', 1, 2, 3], [435755, '高田悠', 1, 2, 3], [454545, '志村', 1, 2, 3], [557855, '黒野怜奈', 1, 2, 3], [846556, 'トゴーフーバダムツェレン', 1, 2, 3]]
-
-stds = []
-for index, key in enumerate(keys):
-    stdss = dict(zip(keys, info[index]))
-    stds.append(stdss)
-print()
+ids=["aaa","qwq","wsa","dqww","asd"]
+names=["jfjf","kksk","kjadk","awjlk","jhw"]
+inserts=[]
 
 
-tpm = []#datasに格納するために成形したリストを一時的に格納する
-datas = []#順番通りのリストを作る→[[DBの0番目のみ],[DBの1番目のみ],[DBの2番目のみ]]
+for id, name in zip(ids, names):
+    inserts.append((id, name, "0", "0", "0"))
 
 
-for i in range(0,len(info)):#リスト内リストの数
-    for j in range(0,len(info[0])):#リスト内リストの要素数
-        tpm.append(info[i][j])
-#print(tpm)[190721, '岩橋大地', 1, 0, 0, 200284, '桃崎奏斗', 1, 0, 0, 210103, '諏訪原慶斗', 1, 0, 1, 435755, '高田悠', 1, 1, 1, 454545, '志村', 1, 1, 1, 557855, '黒野怜奈', 1, 1, 1, 846556, 'トゴーフーバダムツェレン', 1, 1, 1]
-
-
-for iiii in range(0, len(info)-2):
-    for iii in range(0, len(tpm), len(info[0])):
-        datas.append(tpm[iii+iiii])#要素ごとに分けることには成功
-#print(datas)
-
-#datasを要素ごとの二次元配列にする関数(変換したいリスト, リスト内リスト数)
-def convert_1d_to_2d(datas, cols):
-    return [datas[i:i + cols] for i in range(0, len(datas), cols)]
-
-stds = convert_1d_to_2d(datas, len(info))
-
-
-
-
-    
+print(inserts)
 
 
 

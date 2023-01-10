@@ -1,4 +1,5 @@
 from createdb import createdb
+from printxl import createUserForm
 import sqlite3
 import datetime
 import tkinter as tk
@@ -155,7 +156,7 @@ def run_createdb(widget):
 
 
 
-btn_operatedb = tk.Button(window,text = "値の新規登録", command = lambda:run_operatedb(top_page))
+btn_operatedb = tk.Button(window,text = "生徒情報登録", command = lambda:run_operatedb(top_page))
 btn_operatedb.place(x=280, y=150)
 
 
@@ -175,9 +176,10 @@ def run_operatedb(widget):
     btn = []
     #dbを一つずつ取り出す
     for index, db in enumerate(dbs):
-        btn.append(tk.Button(window, text = dbs[index][:-3], command = operate_container(dbs[index][:-3])))
-        btn[index].place(x=250, y=40*(1+index))
-        print(btn)
+        btn.append(db)
+        dbBtn = tk.Button(window, text = db[:-3], command = operate_container(db[:-3]))
+        dbBtn.place(x=250, y=40*(1+index))
+
 
 
 
@@ -185,12 +187,13 @@ def run_operatedb(widget):
 
 #値入力するデータベース
 def operate_container(inp_db):
-    print(inp_db)
-    """
+    print(inp_db+"1")
+    createUserForm()#登録用紙(Excel)作成
+    
     operate_container_page = tk.Canvas(width=800, height=800)
     operate_container_page.place(x=0, y=0) # キャンバス
 
-    operate_container_label = tk.Label(window, text = f"{inp_db}の値入力", font = ("Helvetica", 10))
+    operate_container_label = tk.Label(window, text = f"{inp_db}へエクセルファイルの生徒情報を入力します", font = ("Helvetica", 10))
     operate_container_label.place(x=225, y=10)
 
     
@@ -203,7 +206,7 @@ def operate_container(inp_db):
     #SQLiteを操作するためのカーソル,コントローラー
     cur = conn.cursor()
 
-    """
+    
 
 
 

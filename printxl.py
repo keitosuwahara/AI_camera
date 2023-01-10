@@ -102,6 +102,8 @@ def printXl(db):
 
     #もう少し確実性のあるフォルダの日時の遡り方を考える
 
+
+
 def createUserForm():#ユーザー情報を最初に入力する時エクセルから入力させる→一気にdbに取り込むプログラム
     wb = xl.Workbook()
     ws = wb.worksheets[0]
@@ -129,9 +131,11 @@ def createUserForm():#ユーザー情報を最初に入力する時エクセル�
     ws.merge_cells("A10:B10")
     ws.merge_cells("A11:B11")
     ws.merge_cells("A12:B12")
+    ws.merge_cells("K4:S4")
     ws['A10'].value = "学籍番号は半角厳守"
     ws["A11"].value = "必ず太枠の中に入力してください"
     ws["A12"].value = "必ず一番上から入力してください"
+    ws["K4"].value = "入力が終わったら名前を変えずに”名前を付けて保存”をして”登録用紙”フォルダの中の”作成済み生徒情報”に保存してください"
 
 
 
@@ -157,9 +161,13 @@ def createUserForm():#ユーザー情報を最初に入力する時エクセル�
 
     wb.save(f'./登録用紙/{year}年度生徒情報登録用紙.xlsx')#登録用紙セーブ
 
+
+
+
+
 def userFromXlToDB():
     #登録用紙xlを読み取る処理
-    xl_path = f"./登録用紙/{year}年度生徒情報登録用紙.xlsx"
+    xl_path = f"./登録用紙/作成済み生徒情報/{year}年度生徒情報登録用紙.xlsx"
     userwb = xl.load_workbook(filename=xl_path)
 
     # シートのロード
@@ -173,31 +181,53 @@ def userFromXlToDB():
 #家で読み込む場所を例文から本番に直しておく
     # 学籍番号セルの値取得 
     for num1 in range(3, 1000, 1):
-        id_value = userws[f'C{num1}'].value
+        id_value = userws[f'H{num1}'].value
         if id_value == None:
             pass
         else:
             ids.append(id_value)
     #名前のセルの値取得
     for num2 in range(3, 1000, 1):
-        name_value = userws[f'D{num2}'].value
+        name_value = userws[f'I{num2}'].value
         if name_value == None:
             pass
         else:
             names.append(name_value)
 
 
-    
-
     # 取得した値の表示
     print('学籍番号', ids)
     print('名前', names)
+
+    #dbに入力する処理
 
 
     # ロードしたExcelファイルを閉じる
     userwb.close()
     #作成済みフォルダに入れる
-    userwb.save(f"./登録用紙/作成済み生徒情報/{year}年度作成済み生徒情報.xlsx")
+    userwb.save(f"./登録用紙/{year}年度作成済み生徒情報.xlsx")
+
+    inserts = []
+
+    for id, name in zip(ids, names):
+        inserts.append((id, name, "0", "0", "0"))
+    
+    print(inserts)
+
+    if os.path.exists("./database/students.db"):
+        os.remove("./database/students.db")
+
+    dbname =f"./database/students.db"
+    conn = sqlite3.connect(dbname)
+    #SQLiteを操作するためのカーソル,コントローラー
+    cur = conn.cursor()
+
+    cur.execute("CREATE TABLE IF NOT EXISTS students(学籍番号 STRING PRIMARY KEY , 名前 STRING, 出席 STRING, 遅刻 STRING, 早退 STRING)")
+    cur.executemany("INSERT INTO students values (?,?,?,?,?)",inserts)
+
+    conn.commit()
+
+
     print("userFromXlToDB()終了")
 
 
