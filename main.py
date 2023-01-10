@@ -1,5 +1,5 @@
 from createdb import createdb
-from printxl import printxl
+from printxl import printXl
 from flask import Flask, render_template, request
 import sqlite3
 import datetime
@@ -34,7 +34,7 @@ def top():
 
 
 
-printxl(db)
+printXl(db)
 if __name__ == "__main__":
     app.run(debug=True)
 
